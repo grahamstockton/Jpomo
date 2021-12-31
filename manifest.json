@@ -1,0 +1,20 @@
+{
+
+"description": "JPomo",
+"manifest_version": 2,
+"name": "button-demo",
+"version": "1.0",
+
+"background": {
+    "page": "background/index.html",
+    "persistent": true
+},
+
+"browser_action": {
+    "browser_style": true,
+    "default_popup": "popup/popup.html"
+}
+
+}
+  
+  
