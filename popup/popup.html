@@ -7,10 +7,23 @@
   </head>
 
 <body>
+  <div class="mode-selector">
+    <button class="selector-button selector-pomo" id="selector-pomo">Pomo</button>
+    <button class="selector-button selector-break" id="selector-break">Short Break</button>
+    <button class="selector-button selector-break-long" id="selector-break-long">Long Break</button>
+  </div>
   <div id="time-display"></div>
-  <div class="start">start</div>
-  <div class="pause">pause</div>
-  <div class="reset">reset</div>
+  <div class="display-controller">
+    <button class="start">start</button>
+    <button class="pause">pause</button>
+    <button class="reset">reset</button>
+  </div>
+  <form class="change-times" id="change-times-form">
+    <input id="pomo-time" name="pomo" type="number" placeholder="pomo">
+    <input id="break-time" name="break" type="number" placeholder="break">
+    <input id="break-long-time" name="break-long" type="number" placeholder="long break">
+    <button id="change-times-submit">Change Times</button>
+  </form>
   <script src="popup.js"></script>
 </body>
 

@@ -14,6 +14,7 @@ class Timer {
         this.connected = false;
         this.currentTime = this.times[this.mode] * 60;
         this.intervalTimer;
+        this.intervalEndCommunicator = function () {};
     }
 
     changeMode(newMode) {
@@ -40,7 +41,11 @@ class Timer {
         var self = this;
         var a = setInterval(function() {
             self.currentTime--;
-            if (self.currentTime <= 0) { clearInterval(a); return; }
+            if (self.currentTime <= 0) { 
+                self.intervalEndCommunicator();
+                clearInterval(a);
+                return; 
+            }
             if (self.connected) {
                 try {
                     portFromTimer.postMessage({time: self.currentTime});

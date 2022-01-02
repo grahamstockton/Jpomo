@@ -1,16 +1,11 @@
 html, body {
-    width: 300px;
-  }
-  
-  .page-choice {
-    width: 100%;
-    padding: 4px;
-    font-size: 1.5em;
-    text-align: center;
-    cursor: pointer;
-  }
-  
-  .page-choice:hover {
-    background-color: #CFF2F2;
-  }
-  
+  width: 300px;
+}
+
+.selector-button  {
+  display: flex
+}
+
+.mode-selector {
+  display: flex
+}

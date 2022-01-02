@@ -3,7 +3,16 @@ var port = browser.runtime.connect({name:"port-from-popup"});
 
 // button inputs
 document.body.addEventListener("click", function(e) {
-    if (e.target.classList.contains("start")) {
+    // mode controls
+    if (e.target.classList.contains("selector-pomo")) {
+        browser.runtime.sendMessage({type: "SWITCH", newMode: "pomo"});
+    } else if (e.target.classList.contains("selector-break")) {
+        browser.runtime.sendMessage({type: "SWITCH", newMode: "break"});
+    } else if (e.target.classList.contains("selector-break-long")) {
+        browser.runtime.sendMessage({type: "SWITCH", newMode: "long_break"});
+    }
+    // timer controls
+    else if (e.target.classList.contains("start")) {
         browser.runtime.sendMessage({type: "TIMER_START"});
     }
     else if (e.target.classList.contains("pause")) {
@@ -11,9 +20,6 @@ document.body.addEventListener("click", function(e) {
     }
     else if (e.target.classList.contains("reset")) {
         browser.runtime.sendMessage({type: "TIMER_RESET"});
-    }
-    else {
-        console.error(e);
     }
 });
 
@@ -25,3 +31,15 @@ port.onMessage.addListener(function(m) {
         document.getElementById("time-display").textContent = "ERROR";
     }
 });
+
+// form submit for time change
+document.getElementById("change-times-submit").onclick = function() {
+    browser.runtime.sendMessage({
+        type: "TIMER_CHANGE_TIMES",
+        newTimes: {
+            pomo: document.getElementById("pomo-time").value,
+            break: document.getElementById("break-time").value,
+            long_break: document.getElementById("break-long-time").value
+        }
+    });
+}
