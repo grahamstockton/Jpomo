@@ -2,8 +2,12 @@
 
 "description": "JPomo",
 "manifest_version": 2,
-"name": "button-demo",
+"name": "Jpomo",
 "version": "1.0",
+
+"icons": {
+    "48": "icon.svg"
+},
 
 "background": {
     "page": "background/index.html",

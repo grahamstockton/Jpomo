@@ -3,10 +3,61 @@ body {
   color: white;
 }
 
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: .25rem;
+}
+
+.btn {
+  background-color: transparent;
+  outline: none;
+  border-width: 0px;
+  color: white;
+}
+
+.btn:hover {
+  background-color: transparent;
+}
+
+#time-display {
+  font-size: 4rem;
+  margin: auto;
+}
+
 .selector-button  {
-  display: flex
+  text-align: center;
+  border-radius: 10%;
 }
 
 .mode-selector {
-  display: flex
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.change-times-input {
+  width: 4rem;
+}
+
+.change-times {
+  margin: auto;
+  padding-top: .25rem;
+}
+
+.display-controller {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+#completed-counter {
+  margin: auto;
+}
+
+*:focus {
+  outline: none;
 }

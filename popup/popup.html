@@ -1,31 +1,34 @@
 <!DOCTYPE html>
 
 <html>
-  <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="popup.css"/>
-  </head>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="popup.css" />
+</head>
 
 <body>
-  <div class="mode-selector">
-    <button class="selector-button selector-pomo" id="selector-pomo">Pomo</button>
-    <button class="selector-button selector-break" id="selector-break">Short Break</button>
-    <button class="selector-button selector-break-long" id="selector-break-long">Long Break</button>
+  <div class="container">
+    <div class="mode-selector">
+      <button class="btn selector-button selector-pomo" id="selector-pomo">Pomo</button>
+      <button class="btn selector-button selector-break" id="selector-break">Short Break</button>
+      <button class="btn selector-button selector-break-long" id="selector-break-long">Long Break</button>
+    </div>
+    <div id="time-display"></div>
+    <div class="display-controller">
+      <button class="btn control-btn start">start</button>
+      <button class="btn control-btn pause">pause</button>
+      <button class="btn control-btn reset">reset</button>
+    </div>
+    <form class="change-times" id="change-times-form">
+      <input class="change-times-input" id="pomo-time" name="pomo" type="number" placeholder="pomo">
+      <input class="change-times-input" id="break-time" name="break" type="number" placeholder="break">
+      <input class="change-times-input" id="break-long-time" name="break-long" type="number" placeholder="long break">
+      <button id="change-times-submit">Change Times</button>
+    </form>
+    <div id="completed-counter"></div>
+    <script src="popup.js"></script>
   </div>
-  <div id="time-display"></div>
-  <div class="display-controller">
-    <button class="start">start</button>
-    <button class="pause">pause</button>
-    <button class="reset">reset</button>
-  </div>
-  <form class="change-times" id="change-times-form">
-    <input id="pomo-time" name="pomo" type="number" placeholder="pomo">
-    <input id="break-time" name="break" type="number" placeholder="break">
-    <input id="break-long-time" name="break-long" type="number" placeholder="long break">
-    <button id="change-times-submit">Change Times</button>
-  </form>
-  <div id="completed-counter"></div>
-  <script src="popup.js"></script>
 </body>
 
 </html>
