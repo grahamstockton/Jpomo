@@ -9,6 +9,7 @@ function connected(p) {
   portFromTimer.onMessage.addListener(buttonInput);
   timer.connected = true;
   portFromTimer.postMessage({type: "UPDATE_POMO_COUNTER", val: timer.pomosCompleted});
+  portFromTimer.postMessage({type: "STARTUP_MODE", mode: timer.mode});
   if (timer.currentTime) {
     portFromTimer.postMessage({type: "TIME_UPDATE", time: timer.currentTime});
   } else {

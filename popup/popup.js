@@ -25,7 +25,19 @@ document.body.addEventListener("click", function(e) {
 
 // get times
 port.onMessage.addListener(function(m) {
-    if (m.type === "TIME_UPDATE") {
+    if (m.type === "STARTUP_MODE") {
+        switch (m.mode) {
+            case "pomo":
+                document.body.style.backgroundColor = "#51c249";
+                break;
+            case "break":
+                document.body.style.backgroundColor = "#e04753";
+                break;
+            case "long_break":
+                document.body.style.backgroundColor = "#f2d45e";
+                break;
+        }
+    } else if (m.type === "TIME_UPDATE") {
         try {
             document.getElementById("time-display").textContent = (Math.floor(m.time / 60) + "").padStart(2, "0") + ":" + (m.time % 60 + "").padStart(2,"0");
         } catch {
@@ -47,3 +59,8 @@ document.getElementById("change-times-submit").onclick = function() {
         }
     });
 }
+
+// onclicks for the mode selectors
+document.getElementById("selector-pomo").onclick = function() { document.body.style.backgroundColor = "#51c249"; }
+document.getElementById("selector-break").onclick = function() { document.body.style.backgroundColor = "#e04753"; }
+document.getElementById("selector-break-long").onclick = function() { document.body.style.backgroundColor = "#f2d45e"; }

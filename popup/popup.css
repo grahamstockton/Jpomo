@@ -1,5 +1,6 @@
-html, body {
+body {
   width: 300px;
+  color: white;
 }
 
 .selector-button  {
