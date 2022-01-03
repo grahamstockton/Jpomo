@@ -8,6 +8,7 @@ function connected(p) {
   portFromTimer = p;
   portFromTimer.onMessage.addListener(buttonInput);
   timer.connected = true;
+  portFromTimer.postMessage({type: "UPDATE_POMO_COUNTER", val: timer.pomosCompleted});
   if (timer.currentTime) {
     portFromTimer.postMessage({type: "TIME_UPDATE", time: timer.currentTime});
   } else {
@@ -57,5 +58,14 @@ timer.intervalEndCommunicator = function() {
     portFromTimer.postMessage({type: "TIME_EXPIRED"});
   }
 
-  
+  // change mode to new mode
+  if (timer.mode === timer.modes.pomo) {
+    timer.mode = timer.modes.break;
+    timer.pomosCompleted++;
+    portFromTimer.postMessage({type: "UPDATE_POMO_COUNTER", val: timer.pomosCompleted});
+    timer.reset();
+  } else {
+    timer.mode = timer.modes.pomo;
+    timer.reset();
+  }
 }

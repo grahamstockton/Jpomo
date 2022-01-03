@@ -25,10 +25,14 @@ document.body.addEventListener("click", function(e) {
 
 // get times
 port.onMessage.addListener(function(m) {
-    try {
-        document.getElementById("time-display").textContent = (Math.floor(m.time / 60) + "").padStart(2, "0") + ":" + (m.time % 60 + "").padStart(2,"0");
-    } catch {
-        document.getElementById("time-display").textContent = "ERROR";
+    if (m.type === "TIME_UPDATE") {
+        try {
+            document.getElementById("time-display").textContent = (Math.floor(m.time / 60) + "").padStart(2, "0") + ":" + (m.time % 60 + "").padStart(2,"0");
+        } catch {
+            document.getElementById("time-display").textContent = "ERROR";
+        }
+    } else if (m.type === "UPDATE_POMO_COUNTER") {
+        document.getElementById("completed-counter").textContent = "Pomos completed: " + m.val;
     }
 });
 

@@ -13,8 +13,9 @@ class Timer {
         this.mode = this.modes["pomo"];
         this.connected = false;
         this.currentTime = this.times[this.mode] * 60;
+        this.pomosCompleted = 0;
         this.intervalTimer;
-        this.intervalEndCommunicator = function () {};
+        this.intervalEndCommunicator = function () { return; };
     }
 
     changeMode(newMode) {
@@ -48,7 +49,7 @@ class Timer {
             }
             if (self.connected) {
                 try {
-                    portFromTimer.postMessage({time: self.currentTime});
+                    portFromTimer.postMessage({type: "TIME_UPDATE", time: timer.currentTime});
                 } catch {
                     self.connected = false;
                 }
@@ -64,6 +65,6 @@ class Timer {
     reset() {
         clearInterval(this.intervalTimer);
         this.currentTime = this.times[this.mode] * 60;
-        portFromTimer.postMessage({time: this.currentTime});
+        portFromTimer.postMessage({type: "TIME_UPDATE", time: timer.currentTime});
     }
 }
