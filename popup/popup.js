@@ -25,7 +25,7 @@ document.body.addEventListener("click", function(e) {
 
 // get times
 port.onMessage.addListener(function(m) {
-    if (m.type === "STARTUP_MODE") {
+    if (m.type === "SET_COLOR") {
         switch (m.mode) {
             case "pomo":
                 document.body.style.backgroundColor = "#51c249";

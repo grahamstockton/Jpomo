@@ -9,7 +9,7 @@ function connected(p) {
   portFromTimer.onMessage.addListener(buttonInput);
   timer.connected = true;
   portFromTimer.postMessage({type: "UPDATE_POMO_COUNTER", val: timer.pomosCompleted});
-  portFromTimer.postMessage({type: "STARTUP_MODE", mode: timer.mode});
+  portFromTimer.postMessage({type: "SET_COLOR", mode: timer.mode});
   if (timer.currentTime) {
     portFromTimer.postMessage({type: "TIME_UPDATE", time: timer.currentTime});
   } else {
@@ -54,6 +54,14 @@ browser.runtime.onMessage.addListener(buttonInput);
 
 // timer expired behavior
 timer.intervalEndCommunicator = function() {
+  async function playAlarm() {
+    let audio = new Audio('alarm.wav');
+    audio.play();
+    await new Promise(r => setTimeout(r, 5000));
+    audio.pause();
+  }
+  playAlarm();
+
   // send message for visuals if open
   if (timer.connected) {
     portFromTimer.postMessage({type: "TIME_EXPIRED"});
@@ -69,4 +77,9 @@ timer.intervalEndCommunicator = function() {
     timer.mode = timer.modes.pomo;
     timer.reset();
   }
+
+  if (timer.connected) {
+    portFromTimer.postMessage({type: "SET_COLOR", mode: timer.mode});
+  }
+
 }
