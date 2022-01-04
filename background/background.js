@@ -5,6 +5,7 @@ var timer = new Timer();
 var portFromTimer;
 
 function connected(p) {
+  console.log("connected");
   portFromTimer = p;
   portFromTimer.onMessage.addListener(buttonInput);
   timer.connected = true;
@@ -62,24 +63,19 @@ timer.intervalEndCommunicator = function() {
   }
   playAlarm();
 
-  // send message for visuals if open
-  if (timer.connected) {
-    portFromTimer.postMessage({type: "TIME_EXPIRED"});
-  }
-
   // change mode to new mode
   if (timer.mode === timer.modes.pomo) {
-    timer.mode = timer.modes.break;
+    timer.mode = timer.modes["break"];
     timer.pomosCompleted++;
-    portFromTimer.postMessage({type: "UPDATE_POMO_COUNTER", val: timer.pomosCompleted});
     timer.reset();
   } else {
     timer.mode = timer.modes.pomo;
     timer.reset();
   }
 
+  console.log(timer.mode);
   if (timer.connected) {
+    portFromTimer.postMessage({type: "UPDATE_POMO_COUNTER", val: timer.pomosCompleted});
     portFromTimer.postMessage({type: "SET_COLOR", mode: timer.mode});
   }
-
 }

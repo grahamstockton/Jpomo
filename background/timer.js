@@ -65,6 +65,8 @@ class Timer {
     reset() {
         clearInterval(this.intervalTimer);
         this.currentTime = this.times[this.mode] * 60;
-        portFromTimer.postMessage({type: "TIME_UPDATE", time: timer.currentTime});
+        if (timer.connected){
+            portFromTimer.postMessage({type: "TIME_UPDATE", time: timer.currentTime});
+        }
     }
 }
