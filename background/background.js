@@ -49,9 +49,9 @@ function disconnected(p) {
   timer.connected = false;
 }
 
-browser.runtime.onConnect.addListener(connected);
+chrome.runtime.onConnect.addListener(connected);
 
-browser.runtime.onMessage.addListener(buttonInput);
+chrome.runtime.onMessage.addListener(buttonInput);
 
 // timer expired behavior
 timer.intervalEndCommunicator = function() {
